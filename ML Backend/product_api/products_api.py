@@ -3,10 +3,11 @@ from flask import Flask, jsonify
 import pandas as pd
 from dotenv import load_dotenv
 
+load_dotenv()
 
 app = Flask(__name__)
 
-port = int(os.getenv('PORT', 5000))
+port = os.getenv("PORT")
 
 # Load datasets
 datasets = {
