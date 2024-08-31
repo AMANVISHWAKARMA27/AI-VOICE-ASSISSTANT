@@ -10,11 +10,11 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.applications.resnet50 import preprocess_input
 
 # Load the Keras model
-model_path = '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/saved_models/product_recommendation_model.h5'
+model_path = '../saved_models/product_recommendation_model.h5'
 model = tf.keras.models.load_model(model_path)
 
 # Load the tokenizer
-tokenizer_path = '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/models/tokenizer.pickle'
+tokenizer_path = '../models/tokenizer.pickle'
 with open(tokenizer_path, 'rb') as handle:
     tokenizer = pickle.load(handle)
 
@@ -48,160 +48,160 @@ def preprocess_image_from_url(image_url):
 # Assuming combined_data is loaded from your dataset
 # combined_data should have columns 'name', 'image', etc.
 dataset_paths = [
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Football.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Badminton.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Cycling.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Cricket.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Yoga.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Strength Training.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Running.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Fitness Accessories.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Cardio Equipment.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Sports Shoes.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Sportswear.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Sports Collectibles.csv',
+    '../Datasets/Football.csv',
+    '../Datasets/Badminton.csv',
+    '../Datasets/Cycling.csv',
+    '../Datasets/Cricket.csv',
+    '../Datasets/Yoga.csv',
+    '../Datasets/Strength Training.csv',
+    '../Datasets/Running.csv',
+    '../Datasets/Fitness Accessories.csv',
+    '../Datasets/Cardio Equipment.csv',
+    '../Datasets/Sports Shoes.csv',
+    '../Datasets/Sportswear.csv',
+    '../Datasets/Sports Collectibles.csv',
 
     # Electronics Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Air Conditioners.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Cameras.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Headphones.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Televisions.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Car Electronics.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Security Cameras.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Home Audio and Theater.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Personal Care Appliances.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Heating and Cooling Appliances.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Refrigerators.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Washing Machines.csv',
+    '../Datasets/Air Conditioners.csv',
+    '../Datasets/Cameras.csv',
+    '../Datasets/Headphones.csv',
+    '../Datasets/Televisions.csv',
+    '../Datasets/Car Electronics.csv',
+    '../Datasets/Security Cameras.csv',
+    '../Datasets/Home Audio and Theater.csv',
+    '../Datasets/Personal Care Appliances.csv',
+    '../Datasets/Heating and Cooling Appliances.csv',
+    '../Datasets/Refrigerators.csv',
+    '../Datasets/Washing Machines.csv',
 
     # Fashion Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Mens Fashion.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Womens Fashion.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Kids Fashion.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Shoes.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Casual Shoes.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Formal Shoes.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Ethnic Wear.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Innerwear.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Ballerinas.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Fashion and Silver Jewellery.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Gold and Diamond Jewellery.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Handbags and Clutches.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Jeans.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Lingerie and Nightwear.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/T-shirts and Polos.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Western Wear.csv',
+    '../Datasets/Mens Fashion.csv',
+    '../Datasets/Womens Fashion.csv',
+    '../Datasets/Kids Fashion.csv',
+    '../Datasets/Shoes.csv',
+    '../Datasets/Casual Shoes.csv',
+    '../Datasets/Formal Shoes.csv',
+    '../Datasets/Ethnic Wear.csv',
+    '../Datasets/Innerwear.csv',
+    '../Datasets/Ballerinas.csv',
+    '../Datasets/Fashion and Silver Jewellery.csv',
+    '../Datasets/Gold and Diamond Jewellery.csv',
+    '../Datasets/Handbags and Clutches.csv',
+    '../Datasets/Jeans.csv',
+    '../Datasets/Lingerie and Nightwear.csv',
+    '../Datasets/T-shirts and Polos.csv',
+    '../Datasets/Western Wear.csv',
 
     # Books Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/All Books.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Fiction Books.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Childrens Books.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Exam Central.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/School Textbooks.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Textbooks.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Kindle eBooks.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Indian Language Books.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/All English.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/All Hindi.csv',
+    '../Datasets/All Books.csv',
+    '../Datasets/Fiction Books.csv',
+    '../Datasets/Childrens Books.csv',
+    '../Datasets/Exam Central.csv',
+    '../Datasets/School Textbooks.csv',
+    '../Datasets/Textbooks.csv',
+    '../Datasets/Kindle eBooks.csv',
+    '../Datasets/Indian Language Books.csv',
+    '../Datasets/All English.csv',
+    '../Datasets/All Hindi.csv',
 
     # Home and Kitchen Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/All Home and Kitchen.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Kitchen and Dining.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Furniture.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Home Furnishing.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Home Storage.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Home Dcor.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Bedroom Linen.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Kitchen Storage and Containers.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Heating and Cooling Appliances.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Home Entertainment Systems.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Home Improvement.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Garden and Outdoors.csv',
+    '../Datasets/All Home and Kitchen.csv',
+    '../Datasets/Kitchen and Dining.csv',
+    '../Datasets/Furniture.csv',
+    '../Datasets/Home Furnishing.csv',
+    '../Datasets/Home Storage.csv',
+    '../Datasets/Home Dcor.csv',
+    '../Datasets/Bedroom Linen.csv',
+    '../Datasets/Kitchen Storage and Containers.csv',
+    '../Datasets/Heating and Cooling Appliances.csv',
+    '../Datasets/Home Entertainment Systems.csv',
+    '../Datasets/Home Improvement.csv',
+    '../Datasets/Garden and Outdoors.csv',
 
     # Grocery Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/All Grocery and Gourmet Foods.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Coffee Tea and Beverages.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Diet and Nutrition.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Household Supplies.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Snack Foods.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Pantry.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Value Bazaar.csv',
+    '../Datasets/All Grocery and Gourmet Foods.csv',
+    '../Datasets/Coffee Tea and Beverages.csv',
+    '../Datasets/Diet and Nutrition.csv',
+    '../Datasets/Household Supplies.csv',
+    '../Datasets/Snack Foods.csv',
+    '../Datasets/Pantry.csv',
+    '../Datasets/Value Bazaar.csv',
 
     # Pharmacy Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Amazon Pharmacy.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Health and Personal Care.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Diet and Nutrition.csv',
+    '../Datasets/Amazon Pharmacy.csv',
+    '../Datasets/Health and Personal Care.csv',
+    '../Datasets/Diet and Nutrition.csv',
 
     # Baby Products Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Baby Bath Skin and Grooming.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Baby Fashion.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Baby Products.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Diapers.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Nursing and Feeding.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Strollers and Prams.csv',
+    '../Datasets/Baby Bath Skin and Grooming.csv',
+    '../Datasets/Baby Fashion.csv',
+    '../Datasets/Baby Products.csv',
+    '../Datasets/Diapers.csv',
+    '../Datasets/Nursing and Feeding.csv',
+    '../Datasets/Strollers and Prams.csv',
 
     # Cars and Motorbikes Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/All Car and Motorbike Products.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Car Accessories.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Car and Bike Care.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Car Parts.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Motorbike Accessories and Parts.csv',
+    '../Datasets/All Car and Motorbike Products.csv',
+    '../Datasets/Car Accessories.csv',
+    '../Datasets/Car and Bike Care.csv',
+    '../Datasets/Car Parts.csv',
+    '../Datasets/Motorbike Accessories and Parts.csv',
 
     # Toys and Games Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/All Video Games.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Toys and Games.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/STEM Toys Store.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Toys Gifting Store.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Gaming Consoles.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/PC Games.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Gaming Accessories.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Video Games Deals.csv',
+    '../Datasets/All Video Games.csv',
+    '../Datasets/Toys and Games.csv',
+    '../Datasets/STEM Toys Store.csv',
+    '../Datasets/Toys Gifting Store.csv',
+    '../Datasets/Gaming Consoles.csv',
+    '../Datasets/PC Games.csv',
+    '../Datasets/Gaming Accessories.csv',
+    '../Datasets/Video Games Deals.csv',
 
     # Luggage Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Backpacks.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Bags and Luggage.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Handbags and Clutches.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Rucksacks.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/School Bags.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Suitcases and Trolley Bags.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Travel Accessories.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Travel Duffles.csv',
+    '../Datasets/Backpacks.csv',
+    '../Datasets/Bags and Luggage.csv',
+    '../Datasets/Handbags and Clutches.csv',
+    '../Datasets/Rucksacks.csv',
+    '../Datasets/School Bags.csv',
+    '../Datasets/Suitcases and Trolley Bags.csv',
+    '../Datasets/Travel Accessories.csv',
+    '../Datasets/Travel Duffles.csv',
 
     # Watches and Jewellery Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Watches.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Jewellery.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Fashion and Silver Jewellery.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Gold and Diamond Jewellery.csv',
+    '../Datasets/Watches.csv',
+    '../Datasets/Jewellery.csv',
+    '../Datasets/Fashion and Silver Jewellery.csv',
+    '../Datasets/Gold and Diamond Jewellery.csv',
 
     # Pet Supplies Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Dog supplies.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/All Pet Supplies.csv',
+    '../Datasets/Dog supplies.csv',
+    '../Datasets/All Pet Supplies.csv',
 
     # Musical Instruments Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Musical Instruments and Professional Audio.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Indian Classical.csv',
+    '../Datasets/Musical Instruments and Professional Audio.csv',
+    '../Datasets/Indian Classical.csv',
 
     # Movies and TV Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/All Movies and TV Shows.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Blu-ray.csv',
+    '../Datasets/All Movies and TV Shows.csv',
+    '../Datasets/Blu-ray.csv',
 
     # Collectibles Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Entertainment Collectibles.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Sports Collectibles.csv',
+    '../Datasets/Entertainment Collectibles.csv',
+    '../Datasets/Sports Collectibles.csv',
 
     # Outdoor and Adventure Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Camping and Hiking.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Garden and Outdoors.csv',
+    '../Datasets/Camping and Hiking.csv',
+    '../Datasets/Garden and Outdoors.csv',
 
     # Health and Personal Care Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Health and Personal Care.csv',
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Personal Care Appliances.csv',
+    '../Datasets/Health and Personal Care.csv',
+    '../Datasets/Personal Care Appliances.csv',
 
     # Kitchen Storage Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Kitchen Storage and Containers.csv',
+    '../Datasets/Kitchen Storage and Containers.csv',
 
     # Bedding Datasets
-    '/home/aman/Projects/AI VOICE ASSISSTANT/Recommendation system/Datasets/Bedroom Linen.csv',
+    '../Datasets/Bedroom Linen.csv',
 ]
 
 def load_and_filter_datasets(dataset_paths):
