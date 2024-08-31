@@ -214,43 +214,54 @@ def load_and_filter_datasets(dataset_paths):
 combined_data = load_and_filter_datasets(dataset_paths)
 
 # Recommendation function
-def recommend(product_name, image_url, top_n=5):
-    # Preprocess the input
-    image = preprocess_image_from_url(image_url)
-    if image is None:
-        raise ValueError("Failed to process the image")
-    
-    product_name_sequence = pad_text_sequence(product_name)
-    
-    # Predict scores for all items
-    predictions = model.predict([np.expand_dims(image, axis=0), product_name_sequence])
-    
-    # Get top N recommendations
-    top_indices = np.argsort(predictions[0])[-top_n:]
-    
-    recommendations = combined_data.iloc[top_indices]
-    recommendations['score'] = predictions[0][top_indices]
-    
-    return recommendations[['name', 'image', 'score']]
+def recommend(product_name, image_url=None, top_n=5):
+    try:
+        if image_url:
+            # Process image if URL is provided
+            image = preprocess_image_from_url(image_url)
+            if image is None:
+                raise ValueError(f"Failed to process image from URL {image_url}")
+        else:
+            # Use a default image or dummy data if no image is provided
+            image = np.zeros((224, 224, 3))  # Example placeholder for the image
 
-def recommend_from_history(purchase_history=[], search_history=[], top_n=5):
-    recommendations = []
-    
-    if purchase_history:
-        for name, image_url in purchase_history:
-            recommendations.append(recommend(name, image_url, top_n=top_n))
-    
-    if search_history:
-        for name, image_url in search_history:
-            recommendations.append(recommend(name, image_url, top_n=top_n))
-    
-    # Combine and deduplicate recommendations
-    if recommendations:
-        recommendations_df = pd.concat(recommendations).drop_duplicates(subset=['name', 'image'])
+        # Process product name
+        product_name_sequence = pad_text_sequence(product_name)
+        
+        # Predict scores for all items
+        predictions = model.predict([np.expand_dims(image, axis=0), product_name_sequence])
         
         # Get top N recommendations
-        top_indices = np.argsort(recommendations_df['score'].values)[-top_n:]
-        return recommendations_df.iloc[top_indices][['name', 'image', 'score']]
-    else:
+        top_indices = np.argsort(predictions[0])[-top_n:]
+        
+        recommendations = combined_data.iloc[top_indices]
+        recommendations['score'] = predictions[0][top_indices]
+        
+        return recommendations[['name', 'image', 'score']]
+    except Exception as e:
+        raise ValueError(f"Recommendation failed: {str(e)}")
+
+
+
+def recommend_from_history(purchase_history=[], search_history=[], top_n=5):
+    # Extract product names from history
+    product_names = [item['name'] for item in purchase_history + search_history]
+
+    if not product_names:
         return pd.DataFrame(columns=['name', 'image', 'score'])
+
+    recommendations = []
+    
+    for name in product_names:
+        # Get recommendations for each product name
+        recs = recommend(name, None, top_n)  # Pass None for image_url
+        recommendations.append(recs)
+    
+    # Combine and deduplicate recommendations
+    recommendations_df = pd.concat(recommendations).drop_duplicates(subset=['name', 'image'])
+
+    # Get top N recommendations
+    top_indices = np.argsort(recommendations_df['score'].values)[-top_n:]
+    return recommendations_df.iloc[top_indices][['name', 'image', 'score']]
+
 

@@ -42,18 +42,6 @@ def recommend_endpoint():
             search_history = content.get('search_history', [])
             
             # Process recommendation based on history
-            for history_item in purchase_history + search_history:
-                name = history_item['name']
-                image_url = history_item['image_url']
-                
-                # Debug: Log each URL being processed
-                print(f"Processing image for {name}: {image_url}")
-                
-                # Attempt to preprocess the image
-                image = preprocess_image_from_url(image_url)
-                if image is None:
-                    raise ValueError(f"Failed to process the image for {name} with URL {image_url}")
-            
             recommendations = recommend_from_history(purchase_history=purchase_history, search_history=search_history, top_n=5)
             recommendations_list = recommendations.to_dict(orient='records')
             
@@ -70,6 +58,7 @@ def recommend_endpoint():
         return jsonify({"error": f"Recommendation failed: {str(e)}"}), 500
 
     return jsonify(response)
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
